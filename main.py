@@ -1,14 +1,20 @@
-from telegram import Update
-from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 import os
+from telegram.ext import Updater, CommandHandler
 
-TOKEN = os.environ["BOT_TOKEN"]
+# Inserisci qui il tuo token del bot di Telegram
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 
-async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Ciao! Sono vivo su Render!")
+def start(update, context):
+    update.message.reply_text("Ciao! Il bot è attivo.")
 
-if __name__ == '__main__':
-    app = ApplicationBuilder().token(TOKEN).build()
-    app.add_handler(CommandHandler("start", start))
-    print("Bot in esecuzione...")
-    app.run_polling()
+def main():
+    updater = Updater(TELEGRAM_TOKEN, use_context=True)
+    dp = updater.dispatcher
+
+    dp.add_handler(CommandHandler("start", start))
+
+    updater.start_polling()
+    updater.idle()
+
+if __name__ == "__main__":
+    main()
