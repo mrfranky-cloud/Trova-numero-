@@ -2,7 +2,7 @@ import os
 from telegram.ext import Updater, CommandHandler
 
 # Inserisci qui il tuo token del bot di Telegram
-TELEGRAM_TOKEN = os.getenv("7906500730:AAGlHvnbfX4HS9pEx64O6d1p_1qMH8LzWkE")
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 
 def start(update, context):
     update.message.reply_text("Ciao! Il bot è attivo.")
